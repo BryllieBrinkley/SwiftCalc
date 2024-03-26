@@ -29,36 +29,38 @@ class ViewController: UIViewController {
     }
     
     
+    private var calculator = CalculatorLogic()
+    
     
     @IBAction func calcButtonPressed(_ sender: UIButton) {
         
-       isFinishedTypingNumber = true
-
+        isFinishedTypingNumber = true
+        
+        calculator.setNumber(displayValue)
+        
         if let calcMethod = sender.currentTitle {
             
-            let calculator = CalculatorLogic(number: displayValue)
-            
-            guard let result = calculator.calculate(symbol: calcMethod) else {
-                fatalError("The result of the calculation is nil.")
+            if let result = calculator.calculate(symbol: calcMethod) {
+                displayValue = result
             }
             
-            displayValue = result
-
+            
+            
         }
-
+        
     }
-
+    
     
     @IBAction func numButtonPressed(_ sender: UIButton) {
         
         if let numValue = sender.currentTitle {
             if isFinishedTypingNumber {
                 if numValue == "." {
-                           displayLabel.text = "0."
-                       } else {
-                           displayLabel.text = numValue
-                       }
-                       isFinishedTypingNumber = false
+                    displayLabel.text = "0."
+                } else {
+                    displayLabel.text = numValue
+                }
+                isFinishedTypingNumber = false
             } else {
                 
                 if numValue == "." {
@@ -67,7 +69,7 @@ class ViewController: UIViewController {
                         // If it does, do nothing and return
                         return
                     }
-
+                    
                     let isInt = floor(displayValue) == displayValue
                     
                     if !isInt {
@@ -78,7 +80,7 @@ class ViewController: UIViewController {
                 displayLabel.text = displayLabel.text! + numValue
                 
             }
-
+            
         }
     }
 }
