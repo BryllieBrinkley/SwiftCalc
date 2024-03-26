@@ -15,10 +15,10 @@ struct CalculatorLogic {
     private var intermediateCalculation: (n1: Double, calcMethod: String)?
     
     
-    
     mutating func setNumber(_ number: Double) {
         self.number = number
     }
+    
     
     mutating func calculate(symbol: String) -> Double? {
         if let n = number {

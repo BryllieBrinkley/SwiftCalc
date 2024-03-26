@@ -31,23 +31,16 @@ class ViewController: UIViewController {
     
     private var calculator = CalculatorLogic()
     
-    
     @IBAction func calcButtonPressed(_ sender: UIButton) {
         
         isFinishedTypingNumber = true
-        
         calculator.setNumber(displayValue)
         
         if let calcMethod = sender.currentTitle {
-            
             if let result = calculator.calculate(symbol: calcMethod) {
                 displayValue = result
             }
-            
-            
-            
         }
-        
     }
     
     
